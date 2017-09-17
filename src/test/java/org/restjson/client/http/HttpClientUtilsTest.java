@@ -25,7 +25,8 @@ public class HttpClientUtilsTest {
     @Test
     public void thatSendGetReturnsResponseContentTypeJSONForExampleURL() throws Exception {
         String urlResponseAsString = HttpClientUtils.readURLResponseAsString(POST_SRC_URL);
-        assertTrue("Invalid JSON String", JSONUtils.validateJSON(urlResponseAsString));
+        final boolean isValidJSONObjectOrArray = JSONUtils.validateJSON(urlResponseAsString) || JSONUtils.checkIsValidJSONArray(urlResponseAsString);
+        assertTrue("Invalid JSON String", isValidJSONObjectOrArray);
     }
 
 
